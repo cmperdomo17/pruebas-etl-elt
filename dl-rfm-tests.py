@@ -129,7 +129,7 @@ TESTS = [
         "id": 3,
         "name": "Valores monetarios negativos en ordenes entregadas",
         "query": (
-            "SELECT 'cc_sales_order' AS tabla_origen, entity_id, base_subtotal, "
+            "SELECT 'cc_sales_order' AS tabla_origen, CAST(entity_id AS VARCHAR), base_subtotal, "
             "base_discount_amount, base_bin_discount_amount, base_shipping_amount "
             "FROM {stage}.cc_sales_order "
             "WHERE dt = (SELECT MAX(dt) FROM {stage}.cc_sales_order) "
@@ -341,6 +341,7 @@ TESTS = [
         "id": 13,
         "name": "Mercados ausentes en rfm_unified",
         "pre_wrapped": True,
+        "no_dt": True,
         "query": (
             "WITH mercados_esperados AS ("
             "SELECT 'cc' AS market "
